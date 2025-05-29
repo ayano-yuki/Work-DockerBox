@@ -13,6 +13,5 @@ docker container prune
 
 ## 欲しいものリスト
 - Golang
-- Rust
 - React
 - Vue

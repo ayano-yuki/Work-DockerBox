@@ -1,4 +1,13 @@
-CREATE TABLE users (
+CREATE DATABASE IF NOT EXISTS appdb;
+USE appdb;
+
+CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100)
+);
+
+INSERT INTO users (name)
+SELECT * FROM (SELECT 'Alice') AS tmp
+WHERE NOT EXISTS (
+    SELECT 1 FROM users WHERE name = 'Alice'
 );
