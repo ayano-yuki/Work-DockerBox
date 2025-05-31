@@ -33,6 +33,15 @@ init/ ディレクトリ内の *.sql ファイルは、コンテナ初回起動�
 
 ※ 毎回初期化SQLが実行されるわけではありませんが、ボリューム削除時などに再実行されることを考慮しておくと安全です。
 
+そのため、SQLプログラムを再度実行させたい場合は、ボリュームを下記のコマンドで初期化する必要があります。
+```sh
+docker-compose down -v
+docker-compose up -d
+
+echo 下記のコマンドを実行することで、initフォルダ内のDQLが正しくマウントできたかを確かめることができます。
+echo docker exec -it mysql bash
+echo ls /docker-entrypoint-initdb.d/
+```
 
 ## データの永続化
 MySQLデータはDocker Volume db_data に永続化されるため、コンテナを削除してもデータは保持されます。
